@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		//checks if user has pressed left or right
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
+		
 		animator.SetFloat("forwardSpeed", Mathf.Abs(horizontalMove));
 
 		if (Input.GetButtonDown("Jump"))
@@ -33,5 +33,10 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
+	}
+
+	public float GetPlayerVelocity()
+	{
+		return horizontalMove;
 	}
 }

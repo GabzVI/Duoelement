@@ -30,22 +30,12 @@ public class CharacterController2d : MonoBehaviour
 
 	public UnityEvent OnLandEvent;
 
-	[System.Serializable]
-	public class BoolEvent : UnityEvent<bool> { }
-
-	public BoolEvent OnCrouchEvent;
-	private bool m_wasCrouching = false;
-
 	private void Awake()
 	{
 		playerRB = GetComponent<Rigidbody2D>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
-
-		if (OnCrouchEvent == null)
-			OnCrouchEvent = new BoolEvent();
-
 		footEmission = footSteps.emission;
 	}
 
@@ -109,7 +99,7 @@ public class CharacterController2d : MonoBehaviour
 
 		if(!jump && playerRB.velocity.y > 0)
 		{
-			playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f);
+			playerRB.velocity = new Vector2(playerRB.velocity.x, playerRB.velocity.y * 0.5f * Time.deltaTime);
 		}
 
 		//Show Footsteps Effect

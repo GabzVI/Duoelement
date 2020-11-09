@@ -18,13 +18,12 @@ public class CameraController : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void LateUpdate()
+	void FixedUpdate()
 	{
-		camPos.x = Target.transform.position.x;
 		camPos.y = Mathf.Clamp(camPos.y, -0.38f, 20f);
 		camPos.z = -10;
-		
 
-		transform.position = camPos;
+
+		transform.position = new Vector3(Target.position.x, camPos.y, camPos.z);
 	}
 }
